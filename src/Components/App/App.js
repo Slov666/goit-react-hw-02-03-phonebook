@@ -35,6 +35,20 @@ class App extends Component {
       return { contacts: [...prevState.contacts, contact] };
     });
   };
+  componentDidMount() {
+    const storageContacts = localStorage.getItem("concacts");
+    if (storageContacts) {
+      this.setState({contacts: JSON.parse(storageContacts)})
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const prevContacts = prevState.contacts;
+    const currentContacts = this.state.contacts;
+    if (prevContacts !== currentContacts) {
+      localStorage.setItem("concacts", JSON.stringify(currentContacts));
+    }
+  }
+
   changeFilter = (filter) => {
     this.setState({ filter });
   };
