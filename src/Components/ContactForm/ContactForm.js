@@ -18,6 +18,7 @@ export default class ContactForm extends Component {
     e.preventDefault();
     this.props.createContact(name, number);
     this.setState({ name: "" });
+    this.setState({ number: "" });
   };
   render() {
     const {form, label, input, button} = style;
@@ -33,7 +34,6 @@ export default class ContactForm extends Component {
             onChange={this.handleOnChange}
             value={name}
             placeholder="Enter name"
-            required
           />
         </label>
         <label className={label}>
